@@ -1,0 +1,30 @@
+[
+	{
+		"username": "Admin",
+		"password": "Admin123",
+		"email": "Admin@admin.com",
+		"isAdmin": true,
+		"orderIDs": null
+	},
+	{
+		"username": "User1",
+		"password": "password1",
+		"email": "User1@gmail.com",
+		"isAdmin": false,
+		"orderIDs": ["user1Order1", "user1Order2", "user1Order3"]
+	},
+	{
+		"username": "User2",
+		"password": "password12",
+		"email": "User2@gmail.com",
+		"isAdmin": false,
+		"orderIDs": ["user2Order1", "user2Order2", "user2Order3"]
+	},
+	{
+		"username": "User3",
+		"password": "password123",
+		"email": "User3@gmail.com",
+		"isAdmin": false,
+		"orderIDs": ["user3Order1", "user3Order2", "user3Order3"]
+	}
+]
