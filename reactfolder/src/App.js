@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {Container} from 'semantic-ui-react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
+import adminHome from './Pages/adminHome';
+import clientHome from './Pages/clientHome';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container>
+          <MenuBar />
+          <Route exact path="/" component={loginScreen} />
+          <Route exact path="/forgotPassword" component={forgotPW} />
+          <Route exact path="/adminHome" component={adminHome} />
+          <Route exact path="/clientHome" component={clientHome} />
+          <Route exact path="/orderSum" component={orderSum} />
+          <Route exact path="/orderData" component={orderData} />
+    </Container>
+    </Router>
   );
 }
 
