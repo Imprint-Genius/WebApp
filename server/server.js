@@ -6,7 +6,12 @@ import config from './config/config.js';
 import userRouter from './routes/userRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import { connectToDatabase } from './connectMongodb.js';
-import { main } from './JSONToMongo.js';
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+//ONLY ADD THIS LINE IF YOU WANT TO RESTART THE DB
+//import { main } from './JSONToMongo.js';
+/////////////////////////////////////////////////////////////////////////////////////////
 
 //connect to database
 const db = connectToDatabase().on(
