@@ -1,0 +1,83 @@
+[
+	{
+		"orderID": "user1Order1",
+		"cost": 10.99,
+		"supplier": "Nike",
+		"createdAt": "Some date",
+		"shippingStatus": "Not Yet Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user2Order1",
+		"cost": 11.99,
+		"supplier": "Nike",
+		"createdAt": "Some date",
+		"shippingStatus": "Not Yet Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user3Order1",
+		"cost": 12.99,
+		"supplier": "Nike",
+		"createdAt": "Some date",
+		"shippingStatus": "Not Yet Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user1Order2",
+		"cost": 10,
+		"supplier": "Walmart",
+		"createdAt": "Some date",
+		"shippingStatus": "Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user2Order2",
+		"cost": 11,
+		"supplier": "Walmart",
+		"createdAt": "Some date",
+		"shippingStatus": "Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user3Order2",
+		"cost": 12,
+		"supplier": "Walmart",
+		"createdAt": "Some date",
+		"shippingStatus": "Shipped",
+		"isCompleted": false,
+		"deliveredOn": null
+	},
+	{
+		"orderID": "user1Order3",
+		"cost": 10,
+		"supplier": "Amazon",
+		"createdAt": "Some date",
+		"shippingStatus": "Delivered",
+		"isCompleted": true,
+		"deliveredOn": "Some date"
+	},
+	{
+		"orderID": "user2Order3",
+		"cost": 11,
+		"supplier": "Amazon",
+		"createdAt": "Some date",
+		"shippingStatus": "Delivered",
+		"isCompleted": false,
+		"deliveredOn": "Some date"
+	},
+	{
+		"orderID": "user3Order3",
+		"cost": 12,
+		"supplier": "Amazon",
+		"createdAt": "Some date",
+		"shippingStatus": "Delivered",
+		"isCompleted": false,
+		"deliveredOn": "Some date"
+	}
+]
