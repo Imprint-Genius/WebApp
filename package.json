@@ -1,32 +1,31 @@
 {
-  "name": "bootcamp3",
-  "version": "3.1.0",
-  "description": "Routing server-side requests using ExpressJS",
-  "type": "module",
-  "main": "server.js",
-  "scripts": {
-    "start": "nodemon server/server.js",
-    "test": "cd server && node JSONToMongo.js &&  jest footballClub.server.routes.test.js"
-  },
-  "authors": [
-    {
-      "name": "Edward Mensah"
-    }
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "async": "^3.1.1",
-    "axios": "^0.19.2",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.8.11",
-    "morgan": "^1.9.1",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "@shelf/jest-mongodb": "^1.1.3",
-    "jest": "^25.1.0",
-    "jest-esm-transformer": "^1.0.0",
-    "nodemon": "^2.0.6"
-  }
+	"name": "bootcamp3",
+	"version": "3.1.0",
+	"description": "Routing server-side requests using ExpressJS",
+	"type": "module",
+	"main": "server.js",
+	"scripts": {
+		"start": "nodemon server/server.js",
+		"test": "cd server && node JSONToMongo.js &&  jest footballClub.server.routes.test.js"
+	},
+	"authors": [
+		{
+			"name": "Edward Mensah"
+		}
+	],
+	"license": "MIT",
+	"dependencies": {
+		"async": "^3.1.1",
+		"axios": "^0.19.2",
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.8.11",
+		"morgan": "^1.9.1",
+		"react-router-dom": "^5.2.0"
+	},
+	"devDependencies": {
+		"@shelf/jest-mongodb": "^1.1.3",
+		"jest-esm-transformer": "^1.0.0",
+		"nodemon": "^2.0.6"
+	}
 }
