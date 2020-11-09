@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Login() {
+function orderData() {
 return (
     <div>
         <h1>Order Data Page</h1>
@@ -9,4 +9,4 @@ return (
 
 
 }
-export default Login;
+export default orderData;
