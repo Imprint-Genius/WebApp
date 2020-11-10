@@ -20,7 +20,7 @@ orderRouter.post('/', orderController.createOrder);
   The ':' specifies a URL parameter. 
   Also, it allows the passing of data which is stored in req.params in the controller
  */
-orderRouter.get('/:orderID', orderController.getOrderByOrderById);
+orderRouter.get('/get/:orderID', orderController.getOrderByOrderById);
 // orderRouter.get(
 // 	'/:orderID/:supplier',
 // 	orderController.getOrderByOrderIDAndSupplier
@@ -29,8 +29,8 @@ orderRouter.get('/:orderID', orderController.getOrderByOrderById);
 // 	'/:userID/:isComplete',
 // 	orderController.getOrderByCompeletionStatus
 // );
-orderRouter.put('/:orderID', orderController.updateOrder);
-orderRouter.delete('/:orderID', orderController.removeOrder);
+orderRouter.put('/put/:orderID', orderController.updateOrder);
+orderRouter.delete('/delete/:orderID', orderController.removeOrder);
 
 //orderRouter.get('/:isAdmin', orderController.getAllAdmins);
 
