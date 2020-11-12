@@ -1,7 +1,7 @@
-/*import React from 'react';
+import React from 'react';
 import {Grid,Header, Button} from 'semantic-ui-react';
 
-
+/*
 //TODO: Add sorting thing, autogenerate buttons that link to a certain orders data page
 function orderSum() {
     const style = {
@@ -70,7 +70,6 @@ return (
 }
 export default orderSum;*/
 
-import React from 'react';
 
 import axios from 'axios';
 
@@ -90,9 +89,48 @@ export default class orderData extends React.Component {
 
   render() {
     return (
-      <ul>
-        { this.state.orders.map(order => <li>{order.orderID}</li>)}
-      </ul>
+      <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 1050 }}>
+          <style>
+          {`
+          html, body {
+          background-color: #C0C0C0 ;
+          }
+          `}
+          </style>
+        <Header
+          size='huge' 
+          color='blue' 
+          textAlign='center'
+          style={{marginTop:80, marginBottom:60}}>
+          Order Summaries
+        </Header>
+
+        { this.state.orders.map(order => 
+          <h3 class="ui block header" style={{margin:2}}>
+            <div class="ui horizontal segments">
+              <div class="ui segment" style={{width:100}}>
+                <p>Order ID: {order.orderID}</p>
+              </div>
+              <div class="ui segment" style={{width:100}}>
+                <p>Supplier: {order.supplier}</p>
+              </div>
+              <div class="ui segment" style={{width:100}}>
+                <p>Date Placed: {order.createdAt}</p>
+              </div>
+              <div class="ui segment" style={{width:100}}>
+                <p>Status: {order.shippingStatus}</p>
+              </div>
+              <div class="ui segment" style={{width:100}}>
+                <Button color="teal" href='/orderData'>View Invoice</Button>
+              </div>
+            </div>
+          </h3>)}
+
+        </Grid.Column>
+      </Grid>
+
+      
     )
   }
 }

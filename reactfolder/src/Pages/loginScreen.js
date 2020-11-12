@@ -28,8 +28,8 @@ return (
       <Header //main header
         size='huge' 
         style={style.h1} 
-        color='blue' >
-        Log-in to see your dashboard
+        color="blue" >
+        Log in to view your dashboard
       </Header>
 
       <Form size='large'>
@@ -54,7 +54,7 @@ return (
           </Button>
         
           <Button //forgot password button
-            color='blue' 
+            color='yellow' 
             size='medium' 
             href='/forgotPW'>
             Forgot Password?

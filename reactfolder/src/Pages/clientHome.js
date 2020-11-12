@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid,Header,Container,Card} from 'semantic-ui-react';
+import {Grid,Header,Container,Card, Button} from 'semantic-ui-react';
 
 //TODO: Pass through 'client' to header, figure out how to make the cards look nicer
 
@@ -20,37 +20,32 @@ return (
     `}
     </style>
     
-    <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 10550 }}>
+    
 
       <Header //main header
         as='h1' 
         color='blue' 
         style={style.h1}
         textAlign='center'>
-        Welcome, client!
+        Client Name
       </Header>
 
-      <Card.Group style={{height:330}} itemsPerRow={2}>
-      <Card 
-                
-                color='blue'
-                href='/orderSum'
-                header='Current Orders'
-                
-      />
-      <Card 
-                
-                color='blue'
-                href='/orderSum'
-                header='Completed Orders'
-                
-                
-      />
+      <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
 
-      </Card.Group>
-      </Grid.Column>
-      </Grid>
+      <Button 
+      href='/orderSum' 
+      size='massive' 
+      style={{ height:500, width:500, margin:25, marginTop:-10}}
+      >
+        Current Orders
+      </Button>
+
+      <Button href='/orderSum' size='massive' style={{ height:500, width:500, margin:25, marginTop:-10}}>
+        Completed Orders
+      </Button>
+
+      
+    </Grid>
       
       
       
