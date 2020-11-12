@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import {Grid,Header, Button} from 'semantic-ui-react';
 
 
@@ -68,4 +68,31 @@ return (
 
 
 }
-export default orderSum;
+export default orderSum;*/
+
+import React from 'react';
+
+import axios from 'axios';
+
+export default class orderData extends React.Component {
+  state = {
+    orders: []
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:5000/api/order`)
+      .then(res => {
+        const orders = res.data;
+        console.log(orders);
+        this.setState({ orders });
+      })
+  }
+
+  render() {
+    return (
+      <ul>
+        { this.state.orders.map(order => <li>{order.orderID}</li>)}
+      </ul>
+    )
+  }
+}

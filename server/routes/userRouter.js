@@ -20,11 +20,14 @@ userRouter.post('/', userController.createUser);
   The ':' specifies a URL parameter. 
   Also, it allows the passing of data which is stored in req.params in the controller
  */
-userRouter.get('/:userID', userController.readUser);
-userRouter.get('/:username', userController.getUserByUsername);
-userRouter.get('/:email', userController.getUserByEmail);
-userRouter.put('/:userID', userController.updateUser);
-userRouter.delete('/:userID', userController.removeUser);
-userRouter.get('/:isAdmin', userController.getAllAdmins);
+userRouter.get('/get/:userID', userController.readUser);
+userRouter.get(
+	'/username/:username',
+	userController.getUserByUsername
+);
+userRouter.get('/email/:email', userController.getUserByEmail);
+userRouter.put('/update/:userID', userController.updateUser);
+userRouter.delete('/delete/:userID', userController.removeUser);
+userRouter.get('/admin/:isAdmin', userController.getAllAdmins);
 
 export default userRouter;
