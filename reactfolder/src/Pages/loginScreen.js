@@ -34,7 +34,7 @@ function Login() {
 
 	const style = {
 		h1: {
-			marginBottom: '3em',
+			marginBottom: '2em', marginTop: '-100px',
 		},
 		Button: {
 			marginBottom: '1em',
@@ -90,7 +90,7 @@ function Login() {
 						style={style.h1}
 						color="blue"
 					>
-						Log-in to see your dashboard
+						Log in to view your dashboard
 					</Header>
 
 					<Form size="large">
@@ -117,7 +117,7 @@ function Login() {
 							</Button>
 
 							<Button //forgot password button
-								color="blue"
+								color="yellow"
 								size="medium"
 								href="/forgotPW"
 							>

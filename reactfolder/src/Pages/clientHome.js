@@ -24,11 +24,25 @@ return (
 
       <Header //main header
         as='h1' 
-        color='blue' 
         style={style.h1}
         textAlign='center'>
         Client Name
       </Header>
+
+      <div class="ui huge teal top inverted fixed menu">
+          <div class="item">
+            <h3>Client Dashboard</h3>
+          </div>
+          <a class="item active" href='/clientHome'>
+            Home
+          </a>
+          <a href='/orderSum' class="item">
+            Orders
+          </a>
+          <a id="logout_btn" style={{marginLeft:942}} href="/" class="item">
+            Logout
+          </a>
+      </div>
 
       <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
 

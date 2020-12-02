@@ -2,9 +2,19 @@ import React from 'react';
 
 function orderData() {
 return (
-    <div>
-        <h1>Order Data Page</h1>
-        <h2>This is a placeholder for the pdf that will be generated based on order data</h2>
+    <div class="ui huge teal top inverted fixed menu">
+        <div class="item">
+        <h3>Client Dashboard</h3>
+        </div>
+        <a class="item active" href='/clientHome'>
+        Home
+        </a>
+        <a href='/orderSum' class="item">
+        Orders
+        </a>
+        <a id="logout_btn" style={{marginLeft:942}} href="/" class="item">
+        Logout
+        </a>
     </div>
 )
 

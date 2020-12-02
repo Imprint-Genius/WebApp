@@ -89,6 +89,41 @@ export default class orderData extends React.Component {
 
   render() {
     return (
+      <div>
+      <div class="ui huge teal top inverted fixed menu">
+          <div class="item">
+            <h3>Client Dashboard</h3>
+          </div>
+          <a class="item active" href='/clientHome'>
+            Home
+          </a>
+          <a href='/orderSum' class="item">
+            Orders
+          </a>
+          <a id="logout_btn" style={{marginLeft:942}} href="/" class="item">
+            Logout
+          </a>
+      </div>
+
+        <Header
+          size='huge' 
+          color='black'
+          textAlign='center'
+          style={{marginTop:120}}>
+          Order Summaries
+        </Header>
+
+        <div class="ui simple dropdown item" style={{marginLeft: 58, marginBottom:20}}>
+          <span class="text">Order Type</span>
+          <i class="dropdown icon"></i>
+          <div class="menu inverted" style={{marginTop:-1}}>
+            <div class="item">All Orders</div>
+            <div class="item">Current Orders</div>
+            <div class="item">Completed Orders</div>
+          </div>
+        </div>
+        
+
       <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 1050 }}>
           <style>
@@ -98,37 +133,32 @@ export default class orderData extends React.Component {
           }
           `}
           </style>
-        <Header
-          size='huge' 
-          color='blue' 
-          textAlign='center'
-          style={{marginTop:80, marginBottom:60}}>
-          Order Summaries
-        </Header>
 
         { this.state.orders.map(order => 
-          <h3 class="ui block header" style={{margin:2}}>
-            <div class="ui horizontal segments">
-              <div class="ui segment" style={{width:100}}>
-                <p>Order ID: {order.orderID}</p>
+            <h3 class="ui block header" style={{margin:2}}>
+              <div class="ui horizontal segments">
+                <a class="ui segment" href='/orderData' style={{width:100}}>
+                  <p>Order ID: {order.orderID}</p>
+                </a>
+                <div class="ui segment" style={{width:100}}>
+                  <p>Supplier: {order.supplier}</p>
+                </div>
+                <div class="ui segment" style={{width:100}}>
+                  <p>Date Placed: {order.createdAt}</p>
+                </div>
+                <div class="ui segment" style={{width:100}}>
+                  <p>Status: {order.shippingStatus}</p>
+                </div>
+                <div class="ui segment" style={{width:100}}>
+                  <Button color="teal" href='/orderData'>View Invoice</Button>
+                </div>
               </div>
-              <div class="ui segment" style={{width:100}}>
-                <p>Supplier: {order.supplier}</p>
-              </div>
-              <div class="ui segment" style={{width:100}}>
-                <p>Date Placed: {order.createdAt}</p>
-              </div>
-              <div class="ui segment" style={{width:100}}>
-                <p>Status: {order.shippingStatus}</p>
-              </div>
-              <div class="ui segment" style={{width:100}}>
-                <Button color="teal" href='/orderData'>View Invoice</Button>
-              </div>
-            </div>
-          </h3>)}
+            </h3>
+          )}
 
         </Grid.Column>
       </Grid>
+      </div>
 
       
     )
