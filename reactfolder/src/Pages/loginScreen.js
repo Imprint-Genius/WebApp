@@ -23,12 +23,26 @@ function Login() {
 
 	const renderAdminRedirect = () => {
 		if (adminRedirect) {
-			return <Redirect to="/adminHome" />;
+			return (
+				<Redirect
+					to={{
+						pathname: '/adminHome',
+						state: { name: user },
+					}}
+				/>
+			);
 		}
 	};
 	const renderClientRedirect = () => {
 		if (clientRedirect) {
-			return <Redirect to="/clientHome" />;
+			return (
+				<Redirect
+					to={{
+						pathname: '/clientHome',
+						state: { name: user },
+					}}
+				/>
+			);
 		}
 	};
 
@@ -53,12 +67,14 @@ function Login() {
 		const passedUser = await allUser.filter((u) => {
 			return u.username == user && u.password == password;
 		});
-
-		console.log('3');
-		if (passedUser && passedUser.isAdmin) {
-			setAdminRedirect(true);
-		} else if (passedUser) {
-			setClientRedirect(true);
+		console.log(passedUser[0]);
+		console.log(passedUser[0].isAdmin);
+		if (passedUser[0]) {
+			if (passedUser[0].isAdmin) {
+				setAdminRedirect(true);
+			} else {
+				setClientRedirect(true);
+			}
 		}
 	};
 	const userChange = (evt) => {
