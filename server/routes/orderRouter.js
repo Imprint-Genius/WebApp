@@ -21,6 +21,10 @@ orderRouter.post('/', orderController.createOrder);
   Also, it allows the passing of data which is stored in req.params in the controller
  */
 orderRouter.get('/get/:orderID', orderController.getOrderByOrderById);
+orderRouter.get(
+	'/getByUserID/:userID',
+	orderController.getOrderByUserId
+);
 // orderRouter.get(
 // 	'/:orderID/:supplier',
 // 	orderController.getOrderByOrderIDAndSupplier

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import {
 	Grid,
 	Header,
@@ -9,7 +11,43 @@ import {
 
 //TODO: Pass through 'client' to header, figure out how to make the cards look nicer
 
-function client(props) {
+function Client(props) {
+	const [user, setUser] = useState();
+
+	const [
+		clientRedirectToComplete,
+		setClientRedirectToComplete,
+	] = useState(false);
+	const [
+		clientRedirectToCurrent,
+		setClientRedirectToCurrent,
+	] = useState(false);
+	useEffect(() => {
+		setUser(props.location.state.name);
+	});
+
+	const renderClientRedirect = () => {
+		if (clientRedirectToComplete) {
+			return (
+				<Redirect
+					to={{
+						pathname: '/orderSum',
+						state: { name: user, complete: true },
+					}}
+				/>
+			);
+		} else if (clientRedirectToCurrent) {
+			return (
+				<Redirect
+					to={{
+						pathname: '/orderSum',
+						state: { name: user, complete: false },
+					}}
+				/>
+			);
+		}
+	};
+
 	const style = {
 		h1: {
 			marginTop: '5em',
@@ -17,56 +55,59 @@ function client(props) {
 		},
 	};
 	return (
-		<Container>
-			<style>
-				{`
+		<div>
+			{renderClientRedirect()}
+			<Container>
+				<style>
+					{`
         html, body {
         background-color: #C0C0C0 ;
       }
     `}
-			</style>
+				</style>
 
-			<Header //main header
-				as="h1"
-				color="blue"
-				style={style.h1}
-				textAlign="center"
-			>
-				{props.location.state.name}
-			</Header>
-
-			<Grid
-				textAlign="center"
-				style={{ height: '70vh' }}
-				verticalAlign="middle"
-			>
-				<Button
-					href="/orderSum"
-					size="massive"
-					style={{
-						height: 500,
-						width: 500,
-						margin: 25,
-						marginTop: -10,
-					}}
+				<Header //main header
+					as="h1"
+					color="blue"
+					style={style.h1}
+					textAlign="center"
 				>
-					Current Orders
-				</Button>
+					{user}
+				</Header>
 
-				<Button
-					href="/orderSum"
-					size="massive"
-					style={{
-						height: 500,
-						width: 500,
-						margin: 25,
-						marginTop: -10,
-					}}
+				<Grid
+					textAlign="center"
+					style={{ height: '70vh' }}
+					verticalAlign="middle"
 				>
-					Completed Orders
-				</Button>
-			</Grid>
-		</Container>
+					<Button
+						size="massive"
+						style={{
+							height: 500,
+							width: 500,
+							margin: 25,
+							marginTop: -10,
+						}}
+						onClick={() => setClientRedirectToCurrent(true)}
+					>
+						Current Orders
+					</Button>
+
+					<Button
+						size="massive"
+						style={{
+							height: 500,
+							width: 500,
+							margin: 25,
+							marginTop: -10,
+						}}
+						onClick={() => setClientRedirectToComplete(true)}
+					>
+						Completed Orders
+					</Button>
+				</Grid>
+			</Container>
+		</div>
 	);
 }
-export default client;
+export default Client;

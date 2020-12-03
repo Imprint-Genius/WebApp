@@ -1,5 +1,8 @@
 import React from 'react';
+
 import { Grid, Header, Container, Card } from 'semantic-ui-react';
+import { Redirect } from 'react-router';
+
 /*
 //TODO: Actually pass through the 'admin' variable, figure out search UI, adjust spacing
 
@@ -69,6 +72,8 @@ import axios from 'axios';
 export default class storeData extends React.Component {
 	state = {
 		stores: [],
+		clicked: false,
+		user: '',
 	};
 
 	componentDidMount() {
@@ -77,53 +82,75 @@ export default class storeData extends React.Component {
 			this.setState({ stores });
 		});
 	}
-
+	renderClientRedirect = () => {
+		if (this.state.clicked) {
+			return (
+				<Redirect
+					to={{
+						pathname: '/clientHome',
+						state: { name: this.state.user },
+					}}
+				/>
+			);
+		}
+	};
+	clickedCard = (u) => {
+		this.setState({ clicked: true, user: u });
+	};
 	render() {
 		return (
-			<Container>
-				<style>
-					{`
+			<div>
+				{this.renderClientRedirect()}
+				<Container>
+					<style>
+						{`
           html, body {
           background-color: #C0C0C0 ;
         }
       `}
-				</style>
+					</style>
 
-				<Grid
-					textAlign="center"
-					style={{ height: '50vh' }}
-					verticalAlign="middle"
-				>
-					<Grid.Column style={{ maxWidth: 10050 }}>
-						<Header //main header
-							as="h1"
-							color="blue"
-							textAlign="center"
-							style={{ marginTop: 150, marginBottom: 75 }}
-						>
-							Welcome, {this.props.location.state.name}
-						</Header>
+					<Grid
+						textAlign="center"
+						style={{ height: '50vh' }}
+						verticalAlign="middle"
+					>
+						<Grid.Column style={{ maxWidth: 10050 }}>
+							<Header //main header
+								as="h1"
+								color="blue"
+								textAlign="center"
+								style={{ marginTop: 150, marginBottom: 75 }}
+							>
+								Welcome, {this.props.location.state.name}
+							</Header>
 
-						<Card.Group itemsPerRow={2}>
-							{this.state.stores.map((store) => (
-								<Card color="blue" href="/clientHome">
-									<Card.Content>
-										<Card.Header>{store.username}</Card.Header>
-										<Card.Meta>
-											<span className="date">
-												Placeholder for date joined
-											</span>
-										</Card.Meta>
-										<Card.Description>
-											Placeholder for store owner names
-										</Card.Description>
-									</Card.Content>
-								</Card>
-							))}
-						</Card.Group>
-					</Grid.Column>
-				</Grid>
-			</Container>
+							<Card.Group itemsPerRow={2}>
+								{this.state.stores.map((store) =>
+									store.isAdmin ? null : (
+										<Card
+											color="blue"
+											onClick={() => this.clickedCard(store.username)}
+										>
+											<Card.Content>
+												<Card.Header>{store.username}</Card.Header>
+												<Card.Meta>
+													<span className="date">
+														Placeholder for date joined
+													</span>
+												</Card.Meta>
+												<Card.Description>
+													Placeholder for store owner names
+												</Card.Description>
+											</Card.Content>
+										</Card>
+									)
+								)}
+							</Card.Group>
+						</Grid.Column>
+					</Grid>
+				</Container>
+			</div>
 		);
 	}
 }

@@ -1,5 +1,6 @@
 /* Dependencies */
 import Order from '../models/OrderModel.js';
+import User from '../models/UserModel.js';
 /*
   In this file, you should use Mongoose queries in order to retrieve/add/remove/update order s.
   On an error you should send a 404 status code, as well as the error message. 
@@ -79,6 +80,20 @@ export const getOrderByOrderById = async (req, res) => {
 				error: err.message || 'An unknown error has occurred.',
 			});
 		});
+};
+export const getOrderByUserId = async (req, res) => {
+	/*get the order  id from the req.params */
+	/* send back the Order data as json from the request */
+	/* If the Order data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
+	let _id_ = req.params.userID;
+	const user = await User.find({ username: _id_ });
+	const orders = user[0].orderIDs;
+	const retOrder = [];
+	for (let i = 0; i < orders.length; i++) {
+		const x = await Order.find({ orderID: orders[i] });
+		retOrder.push(x[0]);
+	}
+	res.json(retOrder);
 };
 // /* Show the current Order */
 // export const getOrderByOrderIDAndSupplier = async (req, res) => {
