@@ -67,8 +67,6 @@ function Login() {
 		const passedUser = await allUser.filter((u) => {
 			return u.username == user && u.password == password;
 		});
-		console.log(passedUser[0]);
-		console.log(passedUser[0].isAdmin);
 		if (passedUser[0]) {
 			if (passedUser[0].isAdmin) {
 				setAdminRedirect(true);
