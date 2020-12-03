@@ -6,6 +6,8 @@ import config from './config/config.js';
 import userRouter from './routes/userRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import { connectToDatabase } from './connectMongodb.js';
+import cors from "cors";
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -24,6 +26,10 @@ db.once('open', () => {
 
 //initialize app
 const app = express();
+
+
+app.use(cors()) // Use this after the variable declaration
+
 
 //enable request logging for development debugging
 app.use(morgan('dev'));
