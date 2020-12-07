@@ -2,12 +2,10 @@ import path from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import config from './config/config.js';
 import userRouter from './routes/userRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import { connectToDatabase } from './connectMongodb.js';
-import cors from "cors";
-
+import cors from 'cors';
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,9 +25,7 @@ db.once('open', () => {
 //initialize app
 const app = express();
 
-
-app.use(cors()) // Use this after the variable declaration
-
+app.use(cors()); // Use this after the variable declaration
 
 //enable request logging for development debugging
 app.use(morgan('dev'));
@@ -70,6 +66,6 @@ app.all('/*', (req, res) => {
 		: res.sendFile(path.resolve('./client/index.html'));
 });
 
-app.listen(config.port, () =>
-	console.log(`App now listening on port ${config.port}`)
+app.listen(process.env.PORT, () =>
+	console.log(`App now listening on port ${process.env.PORT}`)
 );
