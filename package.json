@@ -5,8 +5,14 @@
 	"type": "module",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server/server.js",
-		"test": "cd server && node JSONToMongo.js &&  jest footballClub.server.routes.test.js"
+		"test": "mocha server/tests",
+    "install-all": "concurrently \"npm install\" \"cd client && npm install\"",
+    "client": "cd client && npm start",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
+    "build": "cd client && npm build",
+    "start": "node server/server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
 	},
 	"authors": [
 		{
