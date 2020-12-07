@@ -70,6 +70,6 @@ app.all('/*', (req, res) => {
 		: res.sendFile(path.resolve('./client/index.html'));
 });
 
-app.listen(config.port, () =>
+app.listen(process.env.PORT || config.port, () =>
 	console.log(`App now listening on port ${config.port}`)
 );
