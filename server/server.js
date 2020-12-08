@@ -51,31 +51,31 @@ app.use(bodyParser.json());
 */
 app.use('/api/user/', userRouter);
 app.use('/api/order/', orderRouter);
-// if (process.env.NODE_ENV === 'production') {
-// 	// Serve any static files
-// 	app.use(
-// 		express.static(path.join(__dirname, '../reactfolder/build'))
-// 	);
-// 	// Handle React routing, return all requests to React app
-// 	app.get('*', function (req, res) {
-// 		res.sendFile(
-// 			path.join(__dirname, '../reactfolder/build', 'index.html')
-// 		);
-// 	});
-// }
+if (process.env.NODE_ENV === 'production') {
+	// Serve any static files
+	// app.use(
+	// 	express.static(path.join(__dirname, '../reactfolder/build'))
+	// );
+	// Handle React routing, return all requests to React app
+	app.get('*', function (req, res) {
+		res.sendFile(
+			path.join(__dirname, '../reactfolder/build', 'index.html')
+		);
+	});
+}
 /* Request handler for all other routes
    Sends a response (res) to go to the homepage for all routes not specified */
-app.all('/*', (req, res) => {
-	/*Add YOUR CODE HERE
-       see https://expressjs.com/en/api.html#res.sendFile
-       see https://nodejs.org/api/path.html
-       The path.resolve() method returns a string and resolves a sequence of paths or path segments into an absolute path.
-       If no path segments are passed, path.resolve() will return the absolute path of the current working directory.
-    */
-	res.statusCode === 404
-		? res.send('Sorry, information not available')
-		: res.sendFile(path.resolve('./client/index.html'));
-});
+// app.all('/*', (req, res) => {
+// 	/*Add YOUR CODE HERE
+//        see https://expressjs.com/en/api.html#res.sendFile
+//        see https://nodejs.org/api/path.html
+//        The path.resolve() method returns a string and resolves a sequence of paths or path segments into an absolute path.
+//        If no path segments are passed, path.resolve() will return the absolute path of the current working directory.
+//     */
+// 	res.statusCode === 404
+// 		? res.send('Sorry, information not available')
+// 		: res.sendFile(path.resolve('./client/index.html'));
+// });
 
 app.listen(process.env.PORT, () =>
 	console.log(`App now listening on port ${process.env.PORT}`)
