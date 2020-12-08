@@ -78,7 +78,7 @@ export default class storeData extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get(config.server + `/api/user`).then((res) => {
+		axios.get(config.server + `api/user`).then((res) => {
 			const stores = res.data;
 			this.setState({ stores });
 		});
