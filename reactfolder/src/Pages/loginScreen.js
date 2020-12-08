@@ -56,7 +56,7 @@ function Login() {
 	};
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/user`).then((res) => {
+		axios.get(`/api/user`).then((res) => {
 			const users = res.data;
 			if (users) {
 				setAllUser(users);
