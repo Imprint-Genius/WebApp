@@ -57,11 +57,19 @@ if (process.env.NODE_ENV === 'production') {
 	// 	express.static(path.join(__dirname, '../reactfolder/build'))
 	// );
 	// Handle React routing, return all requests to React app
-	app.get('*', function (req, res) {
-		res.sendFile(
-			path.join(__dirname, '../reactfolder/build', 'index.html')
-		);
+
+	app.use('/', express.static('../reactfolder/build'));
+	app.use(express.static('../reactfolder/build'));
+	app.all('/*', (req, res) => {
+		// res.status(201).json({message: "nothing here!"});
+		res.sendFile(path.resolve('../reactfolder/build/index.html'));
 	});
+
+	// app.get('*', function (req, res) {
+	// 	res.sendFile(
+	// 		path.join(__dirname, '../reactfolder/build', 'index.html')
+	// 	);
+	// });
 }
 /* Request handler for all other routes
    Sends a response (res) to go to the homepage for all routes not specified */
