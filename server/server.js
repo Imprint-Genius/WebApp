@@ -58,11 +58,12 @@ if (process.env.NODE_ENV === 'production') {
 	// );
 	// Handle React routing, return all requests to React app
 
-	app.use('/', express.static('../reactfolder/build')).use(cors());
-	app.use(express.static('../reactfolder/build')).use(cors());
+	app.use('/', express.static('reactfolder/build')).use(cors());
+	app.use(express.static('reactfolder/build')).use(cors());
+	console.log(path.resolve());
 	app.all('/*', (req, res) => {
 		// res.status(201).json({message: "nothing here!"});
-		res.sendFile(path.resolve('../reactfolder/build/index.html'));
+		res.sendFile(path.resolve('reactfolder/build/index.html'));
 	});
 
 	// app.get('*', function (req, res) {
