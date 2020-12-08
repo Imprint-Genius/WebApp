@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Header, Button } from 'semantic-ui-react';
+import config from '../../../config.js';
 
 /*
 //TODO: Add sorting thing, autogenerate buttons that link to a certain orders data page
@@ -79,7 +80,8 @@ export default class orderData extends React.Component {
 
 	componentDidMount() {
 		const x =
-			'http://localhost:5000/api/order/getByUserID/' +
+			config.server +
+			'api/order/getByUserID/' +
 			this.props.location.state.name;
 		axios.get(x).then((res) => {
 			const o = res.data;

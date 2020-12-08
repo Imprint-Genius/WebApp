@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../../../config.js';
 import { Redirect } from 'react-router';
 
 import {
@@ -56,7 +57,7 @@ function Login() {
 	};
 
 	useEffect(() => {
-		axios.get(`/api/user`).then((res) => {
+		axios.get(config.server + 'api/user').then((res) => {
 			const users = res.data;
 			if (users) {
 				setAllUser(users);

@@ -68,6 +68,7 @@ export default admin;
 */
 
 import axios from 'axios';
+import config from '../../../config.js';
 
 export default class storeData extends React.Component {
 	state = {
@@ -77,7 +78,7 @@ export default class storeData extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get(`/api/user`).then((res) => {
+		axios.get(config.server + `/api/user`).then((res) => {
 			const stores = res.data;
 			this.setState({ stores });
 		});
