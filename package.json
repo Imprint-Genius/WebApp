@@ -6,6 +6,7 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "node server/server.js",
+		"heroku-postbuild": "cd reactfolder && rm -rf node_modules && npm install && npm run build",
 		"test": "cd server && node JSONToMongo.js &&  jest footballClub.server.routes.test.js"
 	},
 	"authors": [
