@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Header, Button } from 'semantic-ui-react';
-import config from '../../../config.js';
+import config from '../config';
 
 /*
 //TODO: Add sorting thing, autogenerate buttons that link to a certain orders data page
