@@ -1,71 +1,19 @@
 import React from 'react';
-
-import { Grid, Header, Container, Card } from 'semantic-ui-react';
+import {
+	Grid,
+	Header,
+	Container,
+	Card,
+	Button,
+	Menu,
+	Dropdown,
+	Icon,
+} from 'semantic-ui-react';
 import { Redirect } from 'react-router';
+import config from '../config.js';
 
-/*
+
 //TODO: Actually pass through the 'admin' variable, figure out search UI, adjust spacing
-
-function admin() {
-  const style = {
-    h1: {
-      marginBottom: '3em',
-    }
-}
-return (
-    <Container>
-    <style>
-      {`
-        html, body {
-        background-color: #C0C0C0 ;
-      }
-    `}
-    </style>
-    
-    <Grid textAlign='center' style={{ height: '50vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 10050 }}>
-
-
-      <Header //main header
-        as='h1' 
-        style={style.h1} 
-        color='blue' 
-        textAlign='center'>
-        Welcome, admin! 
-      </Header>
-
-
-      <Card.Group itemsPerRow={3}>
-      { This is the card default, we need to pass in every store name and add a card for it,
-            we can make them link to the other pages with 'href' }
-      <Card
-                color='blue'
-                href='/clientHome'
-                header='Store 1'
-      />
-      <Card
-                color='blue'
-                href='#card-example-link-card'
-                header='Store 2'
-      />
-      <Card
-                color='blue'
-                href='#card-example-link-card'
-                header='Store 3'
-      />
-      </Card.Group>
-
-      </Grid.Column>
-      </Grid>
-      
-      </Container>
-
-
-)
-
-}
-export default admin;
-*/
 
 import axios from 'axios';
 
@@ -73,11 +21,13 @@ export default class storeData extends React.Component {
 	state = {
 		stores: [],
 		clicked: false,
+		goBack: false,
 		user: '',
+		logoutClicked: false,
 	};
 
 	componentDidMount() {
-		axios.get(`http://localhost:5000/api/user`).then((res) => {
+		axios.get(config.server + 'api/user').then((res) => {
 			const stores = res.data;
 			this.setState({ stores });
 		});
@@ -87,20 +37,75 @@ export default class storeData extends React.Component {
 			return (
 				<Redirect
 					to={{
-						pathname: '/clientHome',
-						state: { name: this.state.user },
+						pathname: '/orderSum',
+						state: { name: this.state.user, admin: this.props.location.state.admin },
 					}}
 				/>
 			);
 		}
+		else if (this.state.goBack) {
+			if(this.props.location.state.admin){
+				return (
+					<Redirect
+						to={{
+							pathname: '/adminHome',
+							state: { name: this.props.location.state.name, admin: this.props.location.state.admin },
+						}}
+					/>
+				);
+			}	
+		}
+		else if (this.state.logoutClicked) {
+			return (
+			<Redirect
+				to={{
+					pathname: '/',
+				}}
+			/>
+			);
+		}
 	};
+
+	backToHome = (u) => {
+		this.setState({ goBack: true, user: u });
+	};
+
 	clickedCard = (u) => {
 		this.setState({ clicked: true, user: u });
 	};
+
+	logout = () => {
+		this.setState({ logoutClicked: true, user: '' });
+	};
+
 	render() {
 		return (
 			<div>
 				{this.renderClientRedirect()}
+				<div>
+				<Menu fixed='top' color='teal' size='huge' inverted>
+				<Menu.Menu position='left'>
+					<Menu.Item
+					name='Client Dashboard'
+					active={this.active === 'ClientDashboard'}
+					/>
+					<Menu.Item
+					name='Home'
+					active={this.active === 'Home'}
+					onClick={this.backToHome}
+					/>
+				</Menu.Menu>
+
+				<Menu.Menu position='right'>
+					<Menu.Item
+					name='Logout'
+					active={this.active === 'Logout'}
+					onClick={this.logout}
+					/>
+					</Menu.Menu>
+				</Menu>
+			</div>
+
 				<Container>
 					<style>
 						{`
@@ -122,7 +127,7 @@ export default class storeData extends React.Component {
 								textAlign="center"
 								style={{ marginTop: 150, marginBottom: 75 }}
 							>
-								Welcome, {this.props.location.state.name}
+								Welcome
 							</Header>
 
 							<Card.Group itemsPerRow={2}>
