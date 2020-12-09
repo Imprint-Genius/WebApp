@@ -6,6 +6,7 @@ import adminHome from './Pages/adminHome';
 import orderSum from './Pages/orderSum';
 import forgotPW from './Pages/forgotPW';
 import loginScreen from './Pages/loginScreen';
+import resetPW from './Pages/resetPW';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route exact path="/forgotPW" component={forgotPW} />
 				<Route exact path="/adminHome" component={adminHome} />
 				<Route exact path="/orderSum" component={orderSum} />
+				<Route exact path="/resetPW/*" component={resetPW} />
 			</Container>
 		</Router>
 	);
