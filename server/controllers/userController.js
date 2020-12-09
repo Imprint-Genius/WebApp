@@ -43,6 +43,7 @@ export const readUser = async (req, res) => {
 	/* send back the User data as json from the request */
 	/* If the User data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
 	let id = req.params.userID;
+	console.log(id);
 	await User.findById(id)
 		.then((user) => {
 			if (!user) {
@@ -108,30 +109,25 @@ export const updateUser = async (req, res) => {
 	/* Replace the Users's properties which is in the database with the new properties found in what the new data */
 	/* Save the User */
 	const user = req.body;
-	let _email_ = req.params.email;
+	let _id_ = req.params.userID;
 	if (!user) {
 		return res.status(200).send({
 			error: 'User not found',
 		});
 	}
-
-	await User.find({ email: _email_ })
-		.then((data) => {
-			data.username = user.username;
-			data.password = user.password;
-			data.email = user.email;
-			data.isAdmin = user.isAdmin;
-			data.orderIDs = user.orderIDs;
-			data
-				.save()
-				.then((data) => {
-					res.json(data);
-				})
-				.catch((err) => {
-					res.status(200).send({
-						error: err.message || 'An unknown error has occurred.',
-					});
+	await User.updateOne(
+		{ _id: _id_ },
+		{
+			password: user.password,
+		}
+	)
+		.then((user) => {
+			if (!user) {
+				return res.status(200).send({
+					error: 'user not found with username ' + id,
 				});
+			}
+			res.json(user);
 		})
 		.catch((err) => {
 			res.status(200).send({
