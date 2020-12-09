@@ -16,7 +16,7 @@ function App() {
 				<Route exact path="/forgotPW" component={forgotPW} />
 				<Route exact path="/adminHome" component={adminHome} />
 				<Route exact path="/orderSum" component={orderSum} />
-				<Route exact path="/resetPW" component={resetPW} />
+				<Route exact path="/resetPW/*" component={resetPW} />
 			</Container>
 		</Router>
 	);
