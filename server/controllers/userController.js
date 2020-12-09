@@ -161,7 +161,7 @@ export const removeUser = async (req, res) => {
 /* Retrieve all the directory, Users*/
 export const getAllUsers = async (req, res) => {
 	/* Add your code. Make sure to send the documents as a JSON response.*/
-	console.log('hello1');
+	//console.log('hello1');
 	await User.find({}, (err, data) => {
 		if (err)
 			return res.status(200).send({
@@ -169,7 +169,7 @@ export const getAllUsers = async (req, res) => {
 			});
 		res.json(data);
 	});
-	console.log('hello2');
+	//console.log('hello2');
 };
 
 /* Retrieve all the directory, Users*/
