@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../config.js';
 import { Redirect } from 'react-router';
+import config from '../config.js';
 
 import {
 	Grid,
@@ -21,6 +22,7 @@ function Login() {
 	const [password, setPassword] = useState();
 	const [adminRedirect, setAdminRedirect] = useState(false);
 	const [clientRedirect, setClientRedirect] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	const renderAdminRedirect = () => {
 		if (adminRedirect) {
@@ -28,7 +30,7 @@ function Login() {
 				<Redirect
 					to={{
 						pathname: '/adminHome',
-						state: { name: user },
+						state: { name: user, admin: isAdmin },
 					}}
 				/>
 			);
@@ -39,8 +41,8 @@ function Login() {
 			return (
 				<Redirect
 					to={{
-						pathname: '/clientHome',
-						state: { name: user },
+						pathname: '/orderSum',
+						state: { name: user, admin: isAdmin },
 					}}
 				/>
 			);
@@ -49,7 +51,7 @@ function Login() {
 
 	const style = {
 		h1: {
-			marginBottom: '3em',
+			marginBottom: '2em', marginTop: '-100px',
 		},
 		Button: {
 			marginBottom: '1em',
@@ -69,6 +71,7 @@ function Login() {
 			return u.username == user && u.password == password;
 		});
 		if (passedUser[0]) {
+			setIsAdmin(passedUser[0].isAdmin)
 			if (passedUser[0].isAdmin) {
 				setAdminRedirect(true);
 			} else {
@@ -105,7 +108,7 @@ function Login() {
 						style={style.h1}
 						color="blue"
 					>
-						Log-in to see your dashboard
+						Log in to view your dashboard
 					</Header>
 
 					<Form size="large">
@@ -132,7 +135,7 @@ function Login() {
 							</Button>
 
 							<Button //forgot password button
-								color="blue"
+								color="grey"
 								size="medium"
 								href="/forgotPW"
 							>
