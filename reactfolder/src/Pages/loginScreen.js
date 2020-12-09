@@ -105,8 +105,7 @@ function Login() {
 						style={style.h1}
 						color="blue"
 					>
-						Log-in to see your
-						dashboardfsdaljvvvvvvvvvvvvjjjjjjjjjjjjjjjjjjjf
+						Log-in to see your dashboard
 					</Header>
 
 					<Form size="large">
