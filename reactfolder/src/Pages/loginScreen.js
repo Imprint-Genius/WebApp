@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import config from '../config.js';
 
 import {
 	Grid,
@@ -17,7 +18,6 @@ import { all } from 'async';
 function Login() {
 	const [allUser, setAllUser] = useState();
 	const [user, setUser] = useState();
-	const [loggedIn, setLoggedIn] = useState();
 	const [password, setPassword] = useState();
 	const [adminRedirect, setAdminRedirect] = useState(false);
 	const [clientRedirect, setClientRedirect] = useState(false);
@@ -29,7 +29,7 @@ function Login() {
 				<Redirect
 					to={{
 						pathname: '/adminHome',
-						state: { name: user, account: loggedIn, admin: isAdmin },
+						state: { name: user, admin: isAdmin },
 					}}
 				/>
 			);
@@ -41,7 +41,7 @@ function Login() {
 				<Redirect
 					to={{
 						pathname: '/orderSum',
-						state: { name: user, account: loggedIn, admin: isAdmin },
+						state: { name: user, admin: isAdmin },
 					}}
 				/>
 			);
@@ -58,7 +58,7 @@ function Login() {
 	};
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/user`).then((res) => {
+		axios.get(config.server + 'api/user').then((res) => {
 			const users = res.data;
 			if (users) {
 				setAllUser(users);
@@ -80,7 +80,6 @@ function Login() {
 	};
 	const userChange = (evt) => {
 		setUser(evt.target.value);
-		setLoggedIn(evt.target.value);
 	};
 	const passwordChange = (evt) => {
 		setPassword(evt.target.value);

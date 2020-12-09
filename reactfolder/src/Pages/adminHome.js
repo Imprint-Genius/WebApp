@@ -10,6 +10,7 @@ import {
 	Icon,
 } from 'semantic-ui-react';
 import { Redirect } from 'react-router';
+import config from '../config.js';
 
 
 //TODO: Actually pass through the 'admin' variable, figure out search UI, adjust spacing
@@ -26,7 +27,7 @@ export default class storeData extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get(`http://localhost:5000/api/user`).then((res) => {
+		axios.get(config.server + 'api/user').then((res) => {
 			const stores = res.data;
 			this.setState({ stores });
 		});
@@ -47,7 +48,7 @@ export default class storeData extends React.Component {
 				return (
 					<Redirect
 						to={{
-							pathname: '/AdminHome',
+							pathname: '/adminHome',
 							state: { name: this.props.location.state.name, admin: this.props.location.state.admin },
 						}}
 					/>
@@ -126,7 +127,7 @@ export default class storeData extends React.Component {
 								textAlign="center"
 								style={{ marginTop: 150, marginBottom: 75 }}
 							>
-								Welcome, {this.props.location.state.name}
+								Welcome
 							</Header>
 
 							<Card.Group itemsPerRow={2}>

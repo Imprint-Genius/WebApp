@@ -12,6 +12,7 @@ import {
 	Dropdown,
 	Icon,
 } from 'semantic-ui-react';
+import config from '../config.js';
 
 export default class orderSum extends React.Component {
 	state = {
@@ -26,8 +27,9 @@ export default class orderSum extends React.Component {
 
 	componentDidMount() {
 		const x =
-			'http://localhost:5000/api/order/getByUserID/' +
-			this.props.location.state.name;
+            config.server +
+            'api/order/getByUserID/' +
+            this.props.location.state.name;
 		axios.get(x).then((res) => {
 			const o = res.data;
 			this.setState({
