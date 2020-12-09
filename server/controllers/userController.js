@@ -86,7 +86,7 @@ export const getUserByEmail = async (req, res) => {
 	/* send back the User data as json from the request */
 	/* If the User data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
 	let _email_ = req.params.email;
-	await User.find({ email, _email_ })
+	await User.find({ email: _email_ })
 		.then((user) => {
 			if (!user) {
 				return res.status(200).send({
@@ -108,14 +108,14 @@ export const updateUser = async (req, res) => {
 	/* Replace the Users's properties which is in the database with the new properties found in what the new data */
 	/* Save the User */
 	const user = req.body;
-	const id = req.params.userID;
+	let _email_ = req.params.email;
 	if (!user) {
 		return res.status(200).send({
 			error: 'User not found',
 		});
 	}
 
-	await User.findById(id)
+	await User.find({ email: _email_ })
 		.then((data) => {
 			data.username = user.username;
 			data.password = user.password;

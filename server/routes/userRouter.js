@@ -26,7 +26,7 @@ userRouter.get(
 	userController.getUserByUsername
 );
 userRouter.get('/email/:email', userController.getUserByEmail);
-userRouter.put('/update/:userID', userController.updateUser);
+userRouter.put('/update/:email', userController.updateUser);
 userRouter.delete('/delete/:userID', userController.removeUser);
 userRouter.get('/admin/:isAdmin', userController.getAllAdmins);
 
