@@ -2,3 +2,7 @@ node_modules/
 .idea/
 /.history
 server/config/config.js
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env

@@ -1,4 +1,4 @@
-let dev = 1; // dev = 1 => local
+let dev = 0; // dev = 1 => local
 // dev = 0 => heroku
 
 let server_dev = 'http://localhost:5000/';

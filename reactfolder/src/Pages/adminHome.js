@@ -12,10 +12,10 @@ import {
 import { Redirect } from 'react-router';
 import config from '../config.js';
 
-
 //TODO: Actually pass through the 'admin' variable, figure out search UI, adjust spacing
 
 import axios from 'axios';
+import config from '../config.js';
 
 export default class storeData extends React.Component {
 	state = {
@@ -38,30 +38,34 @@ export default class storeData extends React.Component {
 				<Redirect
 					to={{
 						pathname: '/orderSum',
-						state: { name: this.state.user, admin: this.props.location.state.admin },
+						state: {
+							name: this.state.user,
+							admin: this.props.location.state.admin,
+						},
 					}}
 				/>
 			);
-		}
-		else if (this.state.goBack) {
-			if(this.props.location.state.admin){
+		} else if (this.state.goBack) {
+			if (this.props.location.state.admin) {
 				return (
 					<Redirect
 						to={{
 							pathname: '/adminHome',
-							state: { name: this.props.location.state.name, admin: this.props.location.state.admin },
+							state: {
+								name: this.props.location.state.name,
+								admin: this.props.location.state.admin,
+							},
 						}}
 					/>
 				);
-			}	
-		}
-		else if (this.state.logoutClicked) {
+			}
+		} else if (this.state.logoutClicked) {
 			return (
-			<Redirect
-				to={{
-					pathname: '/',
-				}}
-			/>
+				<Redirect
+					to={{
+						pathname: '/',
+					}}
+				/>
 			);
 		}
 	};
@@ -83,28 +87,28 @@ export default class storeData extends React.Component {
 			<div>
 				{this.renderClientRedirect()}
 				<div>
-				<Menu fixed='top' color='teal' size='huge' inverted>
-				<Menu.Menu position='left'>
-					<Menu.Item
-					name='Client Dashboard'
-					active={this.active === 'ClientDashboard'}
-					/>
-					<Menu.Item
-					name='Home'
-					active={this.active === 'Home'}
-					onClick={this.backToHome}
-					/>
-				</Menu.Menu>
+					<Menu fixed="top" color="teal" size="huge" inverted>
+						<Menu.Menu position="left">
+							<Menu.Item
+								name="Client Dashboard"
+								active={this.active === 'ClientDashboard'}
+							/>
+							<Menu.Item
+								name="Home"
+								active={this.active === 'Home'}
+								onClick={this.backToHome}
+							/>
+						</Menu.Menu>
 
-				<Menu.Menu position='right'>
-					<Menu.Item
-					name='Logout'
-					active={this.active === 'Logout'}
-					onClick={this.logout}
-					/>
-					</Menu.Menu>
-				</Menu>
-			</div>
+						<Menu.Menu position="right">
+							<Menu.Item
+								name="Logout"
+								active={this.active === 'Logout'}
+								onClick={this.logout}
+							/>
+						</Menu.Menu>
+					</Menu>
+				</div>
 
 				<Container>
 					<style>

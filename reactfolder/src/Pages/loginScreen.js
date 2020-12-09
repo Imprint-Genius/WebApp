@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../config.js';
 import { Redirect } from 'react-router';
 import config from '../config.js';
 
