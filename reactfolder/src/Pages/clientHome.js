@@ -7,13 +7,18 @@ import {
 	Container,
 	Card,
 	Button,
+	Menu,
+	Dropdown,
+	Icon,
 } from 'semantic-ui-react';
 
 //TODO: Pass through 'client' to header, figure out how to make the cards look nicer
 
 function Client(props) {
 	const [user, setUser] = useState();
-
+	const [active, setActive] = useState(null);
+	const [goBack, setGoBack] = useState(false);
+ 
 	const [
 		clientRedirectToComplete,
 		setClientRedirectToComplete,
@@ -48,6 +53,32 @@ function Client(props) {
 		}
 	};
 
+	if (goBack) {
+		if(props.location.state.admin){
+			return (
+				<Redirect
+					to={{
+						pathname: '/AdminHome',
+						state: { name: user, admin: props.location.state.admin },
+					}}
+				/>
+			);
+		}else{
+			return (
+				<Redirect
+					to={{
+						pathname: '/orderSum',
+						state: { name: user, admin: props.location.state.admin },
+					}}
+				/>
+			);
+		}
+		
+	}
+	const backToHome = () => {
+		setGoBack(true);
+	}
+
 	const style = {
 		h1: {
 			marginTop: '5em',
@@ -60,10 +91,10 @@ function Client(props) {
 			<Container>
 				<style>
 					{`
-        html, body {
-        background-color: #C0C0C0 ;
-      }
-    `}
+						html, body {
+						background-color: #C0C0C0 ;
+						}
+					`}
 				</style>
 
 				<Header //main header
@@ -74,6 +105,29 @@ function Client(props) {
 				>
 					{user}
 				</Header>
+
+				<div>
+					<Menu fixed='top' color='teal' size='huge' inverted>
+					<Menu.Menu position='left'>
+						<Menu.Item
+						name='Client Dashboard'
+						active={active === 'ClientDashboard'}
+						/>
+						<Menu.Item
+						name='Home'
+						active={active === 'Home'}
+						onClick={backToHome}
+						/>
+					</Menu.Menu>
+
+					<Menu.Menu position='right'>
+						<Menu.Item
+						name='Logout'
+						active={active === 'Logout'}
+						/>
+						</Menu.Menu>
+					</Menu>
+				</div>
 
 				<Grid
 					textAlign="center"
