@@ -29,9 +29,9 @@ export default class orderSum extends React.Component {
 
 	componentDidMount() {
 		const x =
-            config.server +
-            'api/order/getByUserID/' +
-            this.props.location.state.name;
+			config.server +
+			'api/order/getByUserID/' +
+			this.props.location.state.name;
 		axios.get(x).then((res) => {
 			const o = res.data;
 			this.setState({
@@ -42,35 +42,39 @@ export default class orderSum extends React.Component {
 	}
 
 	renderClientRedirect = () => {
-		if(this.state.goBack) {
-			if(this.props.location.state.admin){
+		if (this.state.goBack) {
+			if (this.props.location.state.admin) {
 				return (
 					<Redirect
 						to={{
 							pathname: '/AdminHome',
-							state: { name: this.props.location.state.account, admin: this.props.location.state.admin },
+							state: {
+								name: this.props.location.state.account,
+								admin: this.props.location.state.admin,
+							},
 						}}
 					/>
 				);
-			}
-			else{
+			} else {
 				return (
 					<Redirect
 						to={{
 							pathname: '/orderSum',
-							state: { name: this.props.location.state.account, admin: this.props.location.state.admin },
+							state: {
+								name: this.props.location.state.account,
+								admin: this.props.location.state.admin,
+							},
 						}}
 					/>
 				);
-			}	
-		}
-		else if (this.state.logoutClicked) {
+			}
+		} else if (this.state.logoutClicked) {
 			return (
-			<Redirect
-				to={{
-					pathname: '/',
-				}}
-			/>
+				<Redirect
+					to={{
+						pathname: '/',
+					}}
+				/>
 			);
 		}
 	};
@@ -90,18 +94,23 @@ export default class orderSum extends React.Component {
 
 	setAll = () => {
 		this.setState({ complete: 0, selection: 'All Orders' });
-	}
+	};
 
 	setCurrent = () => {
-		this.setState({ complete: 1, selection: 'Completed Orders' });
-	}
+		this.setState({ complete: 1, selection: 'Current Orders' });
+	};
 
 	setComplete = () => {
-		this.setState({ complete: 2, selection: 'Current Orders' });
-	}
+		this.setState({ complete: 2, selection: 'Completed Orders' });
+	};
 
 	backToHome = (u) => {
-		this.setState({ goBack: true, selection: 'All Orders', complete: 0, user: u });
+		this.setState({
+			goBack: true,
+			selection: 'All Orders',
+			complete: 0,
+			user: u,
+		});
 	};
 
 	logout = () => {
@@ -131,41 +140,52 @@ export default class orderSum extends React.Component {
 					/>
 				</Menu.Menu>
 
-				<Menu.Menu position='right'>
-					<Menu.Item
-					name='Logout'
-					active={this.active === 'Logout'}
-					onClick={this.logout}
-					/>
-					</Menu.Menu>
-				</Menu>
-			</div>
 
-			<Header
-				size="huge"
-				color="blue"
-				textAlign="center"
-				style={{ marginTop: 120, marginBottom: 40 }}
-			>
-				Order Summaries
-			</Header>
+						<Menu.Menu position="right">
+							<Menu.Item
+								name="Logout"
+								active={this.active === 'Logout'}
+								onClick={this.logout}
+							/>
+						</Menu.Menu>
+					</Menu>
+				</div>
 
-			<Dropdown text={this.state.selection} size='huge' style={{marginLeft: 58}}>
-				<Dropdown.Menu>
-				<Dropdown.Item text='All Orders' onClick={this.setAll}/>
-				<Dropdown.Item text='Current Orders' onClick={this.setCurrent}/>
-				<Dropdown.Item text='Completed Orders' onClick={this.setComplete}/>
-				</Dropdown.Menu>
-			</Dropdown>
+				<Header
+					size="huge"
+					color="blue"
+					textAlign="center"
+					style={{ marginTop: 120, marginBottom: 40 }}
+				>
+					Order Summaries
+				</Header>
 
-			<Grid
-				textAlign="center"
-				style={{ height: '75vh', marginTop:1 }}
-				verticalAlign="top"
-			>
-				<Grid.Column style={{ maxWidth: 1050 }}>
-					<style>
-						{`
+				<Dropdown
+					text={this.state.selection}
+					size="huge"
+					style={{ marginLeft: 58 }}
+				>
+					<Dropdown.Menu>
+						<Dropdown.Item text="All Orders" onClick={this.setAll} />
+						<Dropdown.Item
+							text="Current Orders"
+							onClick={this.setCurrent}
+						/>
+						<Dropdown.Item
+							text="Completed Orders"
+							onClick={this.setComplete}
+						/>
+					</Dropdown.Menu>
+				</Dropdown>
+
+				<Grid
+					textAlign="center"
+					style={{ height: '75vh', marginTop: 1 }}
+					verticalAlign="top"
+				>
+					<Grid.Column style={{ maxWidth: 1050 }}>
+						<style>
+							{`
           html, body {
           background-color: #C0C0C0 ;
           }
@@ -233,6 +253,7 @@ export default class orderSum extends React.Component {
 					))}
 				</Grid.Column>
 			</Grid>
+
 			</div>
 		);
 	}

@@ -21,6 +21,8 @@
 		"bootstrap": "^4.5.3",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
+		"mailgun-js": "^0.22.0",
+		"mailgun.js": "^2.0.6",
 		"mongoose": "^5.8.11",
 		"morgan": "^1.9.1",
 		"react-bootstrap": "^1.4.0",
