@@ -23,6 +23,8 @@ export default class orderSum extends React.Component {
 		goBack: false,
 		logoutClicked: false,
 		user: '',
+		invoiceButton: false,
+		invoiceID: '',
 	};
 
 	componentDidMount() {
@@ -73,6 +75,19 @@ export default class orderSum extends React.Component {
 		}
 	};
 
+	render_pdf = () => {
+		if (this.state.invoiceButton){
+			return (
+				<Redirect
+					to={{
+						pathname: '/pdf',
+						state: { invoiceID: this.state.invoiceID, admin: this.props.location.state.admin },
+					}}
+				/>
+			);
+		}
+	};
+
 	setAll = () => {
 		this.setState({ complete: 0, selection: 'All Orders' });
 	}
@@ -93,10 +108,15 @@ export default class orderSum extends React.Component {
 		this.setState({ logoutClicked: true, user: '' });
 	};
 
+	invoice = () => {
+		this.setState({ invoiceButton: true});
+	};
+
 	render() {
 		return (
 			<div>
 			{this.renderClientRedirect()}
+			{this.render_pdf()}
 			<div>
 				<Menu fixed='top' color='teal' size='huge' inverted>
 				<Menu.Menu position='left'>
@@ -173,8 +193,8 @@ export default class orderSum extends React.Component {
 									 <p>Status: {order.shippingStatus}</p>
 								 </div>
 								 <div class="ui segment" style={{ width: 100 }}>
-									 <Button color="teal" href="/orderData">
-										 View Invoice
+									 <Button color="teal" onClick={this.invoice}>
+										View Invoice
 									 </Button>
 								 </div>
 							 </div>
@@ -200,7 +220,7 @@ export default class orderSum extends React.Component {
 									 <p>Status: {order.shippingStatus}</p>
 								 </div>
 								 <div class="ui segment" style={{ width: 100 }}>
-									 <Button color="teal" href="/orderData">
+									 <Button color="teal" onClick={this.invoice}>
 										 View Invoice
 									 </Button>
 								 </div>
