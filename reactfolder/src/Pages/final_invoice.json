@@ -1,0 +1,51 @@
+{
+    "body": {
+        "comp_name" : "Imprint Genius",
+        "comp_add": "747 SW 2nd Ave",
+        "comp_state" : "Gainesville, FL",
+        "comp_num" : "+1 352-554-8254",
+        "id": "Invoice #820982911",
+
+        "supply_data" : "Date: 2020-11-05",
+        "invoice_date" : "Due Date: 2020-11-05",
+
+        "billing_name": "John Smith",
+        "billing_company": "My company",
+        "billing_addr": "123 Elm St.",
+        "billing_city": "Ontario, Ottawa",
+        "billing_country": "Canada",
+        "billing_phone": "123-123-1234",
+        "billing_email": "johnsmith@gmail.com",
+
+        "total_due" : "$ 94.00",
+
+        "invoiceto_name": "John Smith",
+        "invoiceto_addr": "123 Elm St.",
+        "invoiceto_city": "Ontario, Ottawa",
+        "invoiceto_contry": "Canada",
+        "invoiceto_phone": "123-123-1234",
+        "invoiceto_email": "johnsmith@gmail.com",
+
+        "item1_name" : "Adidas - 3-Stripes Double Knit Quarter-Zip Pullover",
+        "item1_sku": "SKU: POD-DTG-EXP70PTZ-Black-S",
+        "item1_price": "$ 40.00",
+        "item1_discount": "$ 0.00",
+        "item1_total": "$ 40.00",
+
+        "item2_name" : "Adidas - 3-Stripes Double Knit Quarter-Zip Pullover",
+        "item2_sku": "SKU: POD-DTG-EXP70PTZ-Black-S",
+        "item2_price": "$ 40.00",
+        "item2_discount": "$ 5.00",
+        "item2_total": "$ 35.00",
+
+        "item3_name" : "Adidas - graphic T",
+        "item3_sku": "SKU: POD-DTG-T23165",
+        "item3_price": "$ 25.00",
+        "item3_discount": "$ 6.00",
+        "item3_total": "$ 19.00",
+
+        "subtotal" : "$ 94.00",
+        "tax": "$ 5.64",
+        "grand_total": "$ 99.64"
+    }  
+}

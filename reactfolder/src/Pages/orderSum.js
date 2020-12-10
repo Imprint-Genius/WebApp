@@ -23,6 +23,8 @@ export default class orderSum extends React.Component {
 		goBack: false,
 		logoutClicked: false,
 		user: '',
+		invoiceButton: false,
+		invoiceID: '',
 	};
 
 	componentDidMount() {
@@ -77,6 +79,19 @@ export default class orderSum extends React.Component {
 		}
 	};
 
+	render_pdf = () => {
+		if (this.state.invoiceButton){
+			return (
+				<Redirect
+					to={{
+						pathname: '/pdf',
+						state: { invoiceID: this.state.invoiceID, admin: this.props.location.state.admin },
+					}}
+				/>
+			);
+		}
+	};
+
 	setAll = () => {
 		this.setState({ complete: 0, selection: 'All Orders' });
 	};
@@ -102,23 +117,29 @@ export default class orderSum extends React.Component {
 		this.setState({ logoutClicked: true, user: '' });
 	};
 
+	invoice = () => {
+		this.setState({ invoiceButton: true});
+	};
+
 	render() {
 		return (
 			<div>
-				{this.renderClientRedirect()}
-				<div>
-					<Menu fixed="top" color="teal" size="huge" inverted>
-						<Menu.Menu position="left">
-							<Menu.Item
-								name="Client Dashboard"
-								active={this.active === 'ClientDashboard'}
-							/>
-							<Menu.Item
-								name="Home"
-								active={this.active === 'Home'}
-								onClick={this.backToHome}
-							/>
-						</Menu.Menu>
+			{this.renderClientRedirect()}
+			{this.render_pdf()}
+			<div>
+				<Menu fixed='top' color='teal' size='huge' inverted>
+				<Menu.Menu position='left'>
+					<Menu.Item
+					name='Client Dashboard'
+					active={this.active === 'ClientDashboard'}
+					/>
+					<Menu.Item
+					name='Home'
+					active={this.active === 'Home'}
+					onClick={this.backToHome}
+					/>
+				</Menu.Menu>
+
 
 						<Menu.Menu position="right">
 							<Menu.Item
@@ -169,87 +190,70 @@ export default class orderSum extends React.Component {
           background-color: #C0C0C0 ;
           }
           `}
-						</style>
+					</style>
 
-						{this.state.orders.map((order) => (
+					{this.state.orders.map((order) => (
+						 <div>
+						 {order.isCompleted && (this.state.complete === 0 || this.state.complete === 2) ?
+						 <h3 class="ui block header" style={{ margin: 2 }}>
+ 
+							 <div class="ui horizontal segments">
+ 
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Order ID: {order.orderID}</p>
+								 </div>
+ 
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Supplier: {order.supplier}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Date Placed: {order.createdAt}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Status: {order.shippingStatus}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <Button color="teal" onClick={this.invoice}>
+										View Invoice
+									 </Button>
+								 </div>
+							 </div>
+						 </h3>
+						 : (
 							<div>
-								{order.isCompleted &&
-								(this.state.complete === 0 ||
-									this.state.complete === 2) ? (
-									<h3 class="ui block header" style={{ margin: 2 }}>
-										<div class="ui horizontal segments">
-											<div class="ui segment" style={{ width: 100 }}>
-												<p>Order ID: {order.orderID}</p>
-											</div>
+						 	{order.isCompleted === false && (this.state.complete === 0 || this.state.complete === 1) ?
+							<h3 class="ui block header" style={{ margin: 2 }}>
+ 
+							 <div class="ui horizontal segments">
+ 
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Order ID: {order.orderID}</p>
+								 </div>
+ 
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Supplier: {order.supplier}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Date Placed: {order.createdAt}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <p>Status: {order.shippingStatus}</p>
+								 </div>
+								 <div class="ui segment" style={{ width: 100 }}>
+									 <Button color="teal" onClick={this.invoice}>
+										 View Invoice
+									 </Button>
+								 </div>
+							 </div>
+						 </h3>
+						 : null
+						 }
+						</div>)}
+					</div>
+					))}
+				</Grid.Column>
+			</Grid>
 
-											<div class="ui segment" style={{ width: 100 }}>
-												<p>Supplier: {order.supplier}</p>
-											</div>
-											<div class="ui segment" style={{ width: 100 }}>
-												<p>Date Placed: {order.createdAt}</p>
-											</div>
-											<div class="ui segment" style={{ width: 100 }}>
-												<p>Status: {order.shippingStatus}</p>
-											</div>
-											<div class="ui segment" style={{ width: 100 }}>
-												<Button color="teal" href="/orderData">
-													View Invoice
-												</Button>
-											</div>
-										</div>
-									</h3>
-								) : (
-									<div>
-										{order.isCompleted === false &&
-										(this.state.complete === 0 ||
-											this.state.complete === 1) ? (
-											<h3
-												class="ui block header"
-												style={{ margin: 2 }}
-											>
-												<div class="ui horizontal segments">
-													<div
-														class="ui segment"
-														style={{ width: 100 }}
-													>
-														<p>Order ID: {order.orderID}</p>
-													</div>
-
-													<div
-														class="ui segment"
-														style={{ width: 100 }}
-													>
-														<p>Supplier: {order.supplier}</p>
-													</div>
-													<div
-														class="ui segment"
-														style={{ width: 100 }}
-													>
-														<p>Date Placed: {order.createdAt}</p>
-													</div>
-													<div
-														class="ui segment"
-														style={{ width: 100 }}
-													>
-														<p>Status: {order.shippingStatus}</p>
-													</div>
-													<div
-														class="ui segment"
-														style={{ width: 100 }}
-													>
-														<Button color="teal" href="/orderData">
-															View Invoice
-														</Button>
-													</div>
-												</div>
-											</h3>
-										) : null}
-									</div>
-								)}
-							</div>
-						))}
-					</Grid.Column>
-				</Grid>
 			</div>
 		);
 	}
